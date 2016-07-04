@@ -11,7 +11,7 @@
 
 		function preload() {
 			//game.load.image("mario","./mario.png");
-			game.load.spritesheet("mario","./mariosprite.png",20,32);
+			game.load.spritesheet("mario","./mario.png",35,19);
 			game.load.tilemap("mariotileset","./mariotileset.json",null,Phaser.Tilemap.TILED_JSON);
 			game.load.image("tiles","./tiles.png");
 		}			
@@ -20,18 +20,19 @@
 		function create() {
 			game.physics.startSystem(Phaser.Physics.ARCADE);
 			game.physics.arcade.gravity.y = 250;
-			game.stage.backgroundColor="#0066ff";
+			game.stage.backgroundColor="#0066ee";
 
 			map=game.add.tilemap("mariotileset");
 			map.addTilesetImage("tiles","tiles");
-			map.setCollision(212);
+			map.setCollision([182,183,184]);
+
 
 			layer=map.createLayer("Calque de Tile 1");
 			layer.resizeWorld();
 			layer.wrap=true;
 			game.physics.arcade.enable(layer);
 
-			player=game.add.sprite(0,0,"mario");
+			player=game.add.sprite(0,500,"mario"); 
 			game.physics.arcade.enable(player);
 			player.body.collideWorldBounds = true;
 			player.animations.add("left",[0,1,2,3],10,true);
