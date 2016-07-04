@@ -11,7 +11,7 @@
 
 		function preload() {
 			//game.load.image("mario","./mario.png");
-			game.load.spritesheet("mario","./mario.png",35,19);
+			game.load.spritesheet("mario","./mario.png",17,20, 17, 0, 1);
 			game.load.tilemap("mariotileset","./mariotileset.json",null,Phaser.Tilemap.TILED_JSON);
 			game.load.image("tiles","./tiles.png");
 		}			
@@ -22,21 +22,21 @@
 			game.physics.arcade.gravity.y = 250;
 			game.stage.backgroundColor="#0066ee";
 
-			map=game.add.tilemap("mariotileset");
-			map.addTilesetImage("tiles","tiles");
-			map.setCollision([182,183,184]);
+			// map=game.add.tilemap("mariotileset");
+			// map.addTilesetImage("tiles","tiles");
+			// map.setCollision([182,183,184]);
 
 
-			layer=map.createLayer("Calque de Tile 1");
-			layer.resizeWorld();
-			layer.wrap=true;
-			game.physics.arcade.enable(layer);
+			// layer=map.createLayer("Calque de Tile 1");
+			// layer.resizeWorld();
+			// layer.wrap=true;
+			// game.physics.arcade.enable(layer);
 
 			player=game.add.sprite(0,500,"mario"); 
 			game.physics.arcade.enable(player);
 			player.body.collideWorldBounds = true;
-			player.animations.add("left",[0,1,2,3],10,true);
-			player.animations.add("right",[4,5,6,7],10,true);
+			player.animations.add("left",[0,1,2,3,4,5,6,7],10,true);
+			player.animations.add("right",[0,1,2,3,4,5,6,7],10,true);
 
 			game.camera.follow(player);
 
@@ -46,17 +46,17 @@
 		}
 
 		function update() {
-			game.physics.arcade.collide(player, layer);
+			//game.physics.arcade.collide(player, layer);
 
 			if(cursors.right.isDown) {
 				player.animations.play("right");
 				player.body.velocity.x=125;
-				player.scale.x=1;
+				player.scale.x=-1;
 
 			} else if (cursors.left.isDown) {
 				player.animations.play("left");
 				player.body.velocity.x=-125;
-				player.scale.x=-1;
+				player.scale.x=1;
 			} else {
 				player.animations.stop();
 				player.body.velocity.x=0;
