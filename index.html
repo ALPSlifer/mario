@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Mario</title>
+	<title>Unfair Mario</title>
 	<script src="./phaser.js" type="text/javascript"></script>
 </head>
 <body>
@@ -22,17 +22,17 @@
 			game.physics.arcade.gravity.y = 250;
 			game.stage.backgroundColor="#0066ee";
 
-			// map=game.add.tilemap("mariotileset");
-			// map.addTilesetImage("tiles","tiles");
-			// map.setCollision([182,183,184]);
+			 map=game.add.tilemap("mariotileset");
+			 map.addTilesetImage("tiles","tiles");
+			 map.setCollision([182,183,184]);
 
 
-			// layer=map.createLayer("Calque de Tile 1");
-			// layer.resizeWorld();
-			// layer.wrap=true;
-			// game.physics.arcade.enable(layer);
+			 layer=map.createLayer("Calque de Tile 1");
+			 layer.resizeWorld();
+			 layer.wrap=true;
+			 game.physics.arcade.enable(layer);
 
-			player=game.add.sprite(0,500,"mario"); 
+			player=game.add.sprite(225,550,"mario"); 
 			game.physics.arcade.enable(player);
 			player.body.collideWorldBounds = true;
 			player.animations.add("left",[0,1,2,3,4,5,6,7],10,true);
@@ -46,7 +46,7 @@
 		}
 
 		function update() {
-			//game.physics.arcade.collide(player, layer);
+			game.physics.arcade.collide(player, layer);
 
 			if(cursors.right.isDown) {
 				player.animations.play("right");
